@@ -1,0 +1,232 @@
+:root {
+    --grid-size: min(80px, 20vw);
+    --grid-gap: min(10px, 2vw);
+    --border-radius: 6px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #faf8ef;
+    color: #776e65;
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+h1 {
+    font-size: min(4em, 15vw);
+    margin: 0;
+    color: #776e65;
+}
+
+.score-box {
+    display: flex;
+    gap: 10px;
+}
+
+.score-container, .best-container {
+    background: #bbada0;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    color: white;
+    min-width: 100px;
+}
+
+.score-label {
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+#score, #best-score {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.instructions {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #eee4da;
+    border-radius: var(--border-radius);
+    font-size: min(1em, 4vw);
+}
+
+.instructions h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+.instructions p {
+    margin: 10px 0;
+}
+
+.game-container {
+    position: relative;
+    padding: var(--grid-gap);
+    background-color: #bbada0;
+    border-radius: var(--border-radius);
+    margin: 20px auto;
+    width: fit-content;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, var(--grid-size));
+    grid-template-rows: repeat(4, var(--grid-size));
+    gap: var(--grid-gap);
+    background-color: #bbada0;
+    border-radius: var(--border-radius);
+    position: relative;
+}
+
+.tile {
+    width: var(--grid-size);
+    height: var(--grid-size);
+    background-color: rgba(238, 228, 218, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: min(2em, 8vw);
+    font-weight: bold;
+    border-radius: 3px;
+    position: absolute;
+    transition: all 0.15s ease-in-out;
+    transform: translate(
+        calc(var(--x) * (var(--grid-size) + var(--grid-gap))), 
+        calc(var(--y) * (var(--grid-size) + var(--grid-gap)))
+    );
+}
+
+.mobile-controls {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.horizontal-controls {
+    display: flex;
+    gap: 20px;
+}
+
+.control-button {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    border: none;
+    background-color: #8f7a66;
+    color: white;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.game-button {
+    padding: 10px 20px;
+    background-color: #8f7a66;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.game-button:hover, .control-button:hover {
+    background-color: #9f8a76;
+}
+
+.game-message {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(238, 228, 218, 0.73);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: var(--border-radius);
+}
+
+.game-message.game-over {
+    display: flex;
+}
+
+.game-message p {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Tile colors */
+.tile-2 { background-color: #eee4da; color: #776e65; }
+.tile-4 { background-color: #ede0c8; color: #776e65; }
+.tile-8 { background-color: #f2b179; color: #f9f6f2; }
+.tile-16 { background-color: #f59563; color: #f9f6f2; }
+.tile-32 { background-color: #f67c5f; color: #f9f6f2; }
+.tile-64 { background-color: #f65e3b; color: #f9f6f2; }
+.tile-128 { background-color: #edcf72; color: #f9f6f2; }
+.tile-256 { background-color: #edcc61; color: #f9f6f2; }
+.tile-512 { background-color: #edc850; color: #f9f6f2; }
+.tile-1024 { background-color: #edc53f; color: #f9f6f2; }
+.tile-2048 { background-color: #edc22e; color: #f9f6f2; }
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+    }
+    
+    .instructions p:first-child {
+        display: none;
+    }
+    
+    .instructions::before {
+        content: "Swipe or use buttons below to move tiles";
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        justify-content: center;
+    }
+    
+    .score-box {
+        width: 100%;
+        justify-content: center;
+    }
+}

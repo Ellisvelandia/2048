@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>2048 Game</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>2048</h1>
+            <div class="score-box">
+                <div class="score-container">
+                    <div class="score-label">SCORE</div>
+                    <div id="score">0</div>
+                </div>
+                <div class="best-container">
+                    <div class="score-label">BEST</div>
+                    <div id="best-score">0</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="instructions">
+            <h2>How to Play:</h2>
+            <p>1. Use arrow keys (←↑↓→) or swipe to move tiles</p>
+            <p>2. When two tiles with the same number touch, they merge into one!</p>
+            <p>3. Try to create a tile with the number 2048</p>
+        </div>
+        
+        <div class="game-container">
+            <div class="grid-container">
+                <!-- Grid tiles will be generated here -->
+            </div>
+            <div class="game-message">
+                <p></p>
+                <div class="lower">
+                    <button id="retry-button">Try again</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-controls">
+            <button id="up-button" class="control-button">↑</button>
+            <div class="horizontal-controls">
+                <button id="left-button" class="control-button">←</button>
+                <button id="right-button" class="control-button">→</button>
+            </div>
+            <button id="down-button" class="control-button">↓</button>
+        </div>
+
+        <div class="buttons">
+            <button id="restart" class="game-button">New Game</button>
+            <button id="undo" class="game-button">Undo</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
